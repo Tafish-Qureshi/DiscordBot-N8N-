@@ -1,0 +1,215 @@
+{
+  "name": "Pauze schedule trigger",
+  "nodes": [
+    {
+      "parameters": {
+        "resource": "message",
+        "guildId": {
+          "__rl": true,
+          "value": "1333420525724368926",
+          "mode": "list",
+          "cachedResultName": "Webhooks",
+          "cachedResultUrl": "https://discord.com/channels/1333420525724368926"
+        },
+        "channelId": {
+          "__rl": true,
+          "value": "1334546350926332037",
+          "mode": "list",
+          "cachedResultName": "pauze",
+          "cachedResultUrl": "https://discord.com/channels/1333420525724368926/1334546350926332037"
+        },
+        "content": "Het is pauze",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        1020,
+        -200
+      ],
+      "id": "091b50f4-aae0-4e6b-9979-d94af8006475",
+      "name": "Discord",
+      "credentials": {
+        "discordBotApi": {
+          "id": "vhgZdJXvVK8Bp9Rs",
+          "name": "Discord Bot account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "guildId": {
+          "__rl": true,
+          "value": "1333420525724368926",
+          "mode": "list",
+          "cachedResultName": "Webhooks",
+          "cachedResultUrl": "https://discord.com/channels/1333420525724368926"
+        },
+        "channelId": {
+          "__rl": true,
+          "value": "1334546350926332037",
+          "mode": "list",
+          "cachedResultName": "pauze",
+          "cachedResultUrl": "https://discord.com/channels/1333420525724368926/1334546350926332037"
+        }
+      },
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        -260,
+        -60
+      ],
+      "id": "8397e0e6-99e1-4091-9f54-6ededc0dbeb6",
+      "name": "Discord1",
+      "credentials": {
+        "discordBotApi": {
+          "id": "vhgZdJXvVK8Bp9Rs",
+          "name": "Discord Bot account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "seconds"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -880,
+        -60
+      ],
+      "id": "e2b80655-7d25-4adc-bff9-cb1e9d2a84ec",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "2627a688-1b56-49e4-8aa2-cb900fe5678d",
+              "leftValue": "pauze",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        280,
+        -60
+      ],
+      "id": "b6131603-6b8e-4adb-904f-d5f2f57e6f68",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "guildId": {
+          "__rl": true,
+          "value": "1333420525724368926",
+          "mode": "list",
+          "cachedResultName": "Webhooks",
+          "cachedResultUrl": "https://discord.com/channels/1333420525724368926"
+        },
+        "channelId": {
+          "__rl": true,
+          "value": "1334546350926332037",
+          "mode": "list",
+          "cachedResultName": "pauze",
+          "cachedResultUrl": "https://discord.com/channels/1333420525724368926/1334546350926332037"
+        },
+        "content": "Het is geen pauze",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        1020,
+        120
+      ],
+      "id": "b4d0b257-8f5a-46cd-8deb-c6e2d27b15a4",
+      "name": "Discord2",
+      "credentials": {
+        "discordBotApi": {
+          "id": "vhgZdJXvVK8Bp9Rs",
+          "name": "Discord Bot account 2"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Discord1": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Discord1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Discord",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Discord2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "019ec6e7-62f0-46be-b9b1-f1df187e7cce",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "0adf7eeec35c51e84cd4fdf7194f5d6855b856c3378ca2cef471c9f122a2cd0d"
+  },
+  "id": "GeSaXK7YlYHouYlG",
+  "tags": []
+}

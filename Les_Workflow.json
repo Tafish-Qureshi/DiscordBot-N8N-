@@ -1,0 +1,215 @@
+{
+  "name": "Les Workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "b5c43ca1-06e0-41aa-bf98-4743b979be4b",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "guildId": {
+          "__rl": true,
+          "value": "1333420525724368926",
+          "mode": "list",
+          "cachedResultName": "Webhooks",
+          "cachedResultUrl": "https://discord.com/channels/1333420525724368926"
+        },
+        "channelId": {
+          "__rl": true,
+          "value": "1334549359911501844",
+          "mode": "list",
+          "cachedResultName": "lesson",
+          "cachedResultUrl": "https://discord.com/channels/1333420525724368926/1334549359911501844"
+        }
+      },
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        200,
+        -220
+      ],
+      "id": "6ade539b-3eb0-4aa0-9b66-c239b570ab0b",
+      "name": "Discord",
+      "credentials": {
+        "discordBotApi": {
+          "id": "vhgZdJXvVK8Bp9Rs",
+          "name": "Discord Bot account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "a3b7456a-3af4-4412-852e-fb9a18f72278",
+              "leftValue": "lesson",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        440,
+        0
+      ],
+      "id": "62c1f90c-12cd-4d38-9213-0a1356733729",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "guildId": {
+          "__rl": true,
+          "value": "1333420525724368926",
+          "mode": "list",
+          "cachedResultName": "Webhooks",
+          "cachedResultUrl": "https://discord.com/channels/1333420525724368926"
+        },
+        "channelId": {
+          "__rl": true,
+          "value": "1334549359911501844",
+          "mode": "list",
+          "cachedResultName": "lesson",
+          "cachedResultUrl": "https://discord.com/channels/1333420525724368926/1334549359911501844"
+        },
+        "content": "Mentorles\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        660,
+        -100
+      ],
+      "id": "e029eb23-0764-4604-8a11-bb3d75b8e2ae",
+      "name": "Discord1",
+      "credentials": {
+        "discordBotApi": {
+          "id": "vhgZdJXvVK8Bp9Rs",
+          "name": "Discord Bot account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "guildId": {
+          "__rl": true,
+          "value": "1333420525724368926",
+          "mode": "list",
+          "cachedResultName": "Webhooks",
+          "cachedResultUrl": "https://discord.com/channels/1333420525724368926"
+        },
+        "channelId": {
+          "__rl": true,
+          "value": "1334549359911501844",
+          "mode": "list",
+          "cachedResultName": "lesson",
+          "cachedResultUrl": "https://discord.com/channels/1333420525724368926/1334549359911501844"
+        },
+        "content": "geen les",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        660,
+        100
+      ],
+      "id": "1e6a9f6f-8b11-4806-96e4-3b65812e5820",
+      "name": "Discord2",
+      "credentials": {
+        "discordBotApi": {
+          "id": "vhgZdJXvVK8Bp9Rs",
+          "name": "Discord Bot account 2"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Discord",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Discord": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Discord1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Discord2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "3a87de70-d468-49da-a4b2-609e7262b7b2",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "0adf7eeec35c51e84cd4fdf7194f5d6855b856c3378ca2cef471c9f122a2cd0d"
+  },
+  "id": "i1LQjcfBewxGGInK",
+  "tags": []
+}
