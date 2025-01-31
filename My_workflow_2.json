@@ -1,0 +1,720 @@
+{
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {
+        "model": "deepseek-r1:1.5b",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+      "typeVersion": 1,
+      "position": [
+        -740,
+        480
+      ],
+      "id": "9c0b3d84-8ec6-4116-a16f-b8645655f2b4",
+      "name": "Ollama Chat Model",
+      "credentials": {
+        "ollamaApi": {
+          "id": "7I2xrs1w6CaOQQF5",
+          "name": "Ollama account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "guildId": {
+          "__rl": true,
+          "value": "1333420525724368926",
+          "mode": "list",
+          "cachedResultName": "Webhooks",
+          "cachedResultUrl": "https://discord.com/channels/1333420525724368926"
+        },
+        "channelId": {
+          "__rl": true,
+          "value": "1334159399014367272",
+          "mode": "list",
+          "cachedResultName": "welkom",
+          "cachedResultUrl": "https://discord.com/channels/1333420525724368926/1334159399014367272"
+        },
+        "options": {},
+        "embeds": {
+          "values": [
+            {
+              "description": "# welkom in de server",
+              "color": "#FF0000",
+              "image": "https://c.tenor.com/l9_EcypPBO8AAAAd/tenor.gif"
+            }
+          ]
+        }
+      },
+      "id": "4c6f19dc-8761-4307-a722-ae127086ad94",
+      "name": "Discord1",
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "credentials": {
+        "discordBotApi": {
+          "id": "vhgZdJXvVK8Bp9Rs",
+          "name": "Discord Bot account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "de6d6075-6886-4bc7-a558-44ce67c45c0c",
+              "leftValue": "={{ $json.chatInput }}",
+              "rightValue": "join",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "a3e71177-b38e-411a-bd95-c08c92cb8c3b",
+              "leftValue": "{{ $json.chatInput }}",
+              "rightValue": "leave",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "47684201-dcd2-480b-be31-7fe992ccd659",
+              "leftValue": "={{ $json.content }}",
+              "rightValue": "join",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "id": "0d6ddfcb-71b8-4e61-8b07-c9dbf6367e12",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -640,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "bbc3714f-9086-4b3b-b58b-6cc48da3fbe2",
+              "leftValue": "={{ $json.chatInput }}",
+              "rightValue": "join",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "c1118d42-ffb5-4564-a904-5bd1be009fdd",
+              "leftValue": "={{ $json.chatInput }}",
+              "rightValue": "leave",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "f5931410-c397-4e88-834a-bf1f990699af",
+              "leftValue": "={{ $json.content }}",
+              "rightValue": "leave",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "41dd6e59-0474-4e92-98b0-24d621b7878f",
+              "leftValue": "={{ $json.content }}",
+              "rightValue": "join",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "id": "fbf21e33-925a-4e0e-9132-01d67a7fb5b1",
+      "name": "If1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -1200,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "guildId": {
+          "__rl": true,
+          "value": "1333420525724368926",
+          "mode": "list",
+          "cachedResultName": "Webhooks",
+          "cachedResultUrl": "https://discord.com/channels/1333420525724368926"
+        },
+        "channelId": {
+          "__rl": true,
+          "value": "1334180325416239105",
+          "mode": "list",
+          "cachedResultName": "dag",
+          "cachedResultUrl": "https://discord.com/channels/1333420525724368926/1334180325416239105"
+        },
+        "options": {},
+        "embeds": {
+          "values": [
+            {
+              "description": "# fijn dat je er was dag",
+              "color": "#FF0000",
+              "image": "https://c.tenor.com/9qTeLxgJFYEAAAAd/tenor.gif"
+            }
+          ]
+        }
+      },
+      "id": "fd8a6e47-05b1-444b-9f04-109ad07ff3b6",
+      "name": "Discord",
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        0,
+        160
+      ],
+      "credentials": {
+        "discordBotApi": {
+          "id": "vhgZdJXvVK8Bp9Rs",
+          "name": "Discord Bot account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "08c92ffa-377a-47f4-87db-aec1edc03e4c",
+              "leftValue": "={{ $json.chatInput }}",
+              "rightValue": "={{ $json.chatInput }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "a2414334-f7f8-48a2-9007-4fa8bd4bce21",
+              "leftValue": "={{ $json.content }}",
+              "rightValue": "={{ $json.content }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "id": "cf6a31aa-5105-4af2-a1ee-f144202062c8",
+      "name": "If2",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -1760,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "bbc3714f-9086-4b3b-b58b-6cc48da3fbe2",
+              "leftValue": "={{ $('Merge').item.json.action }}",
+              "rightValue": "={{ $('Merge').item.json.chatInput }}",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "7db8bffa-2e4e-4a79-951b-0f24272a1647",
+      "name": "If3",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -1020,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -2020,
+        180
+      ],
+      "id": "1e6d4f47-5db1-499b-b456-c946057eeb10",
+      "name": "When chat message received",
+      "webhookId": "ce482959-9032-4b7a-a90a-1da61450b6f1"
+    },
+    {
+      "parameters": {},
+      "id": "4749dff0-717b-485e-9a44-32b5faf513f2",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        -1460,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "57cb50d8-ff0d-48b3-b252-f83f2def3141",
+              "leftValue": "={{ $json.asciiText }}",
+              "rightValue": "=",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "id": "49462173-76a9-42fb-a2f9-4274369d5794",
+      "name": "If4",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -120,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const text = $input.first().json.text;\nconst match = text.match(/<\\/think>\\s*(.*)/s);\nif (match) {\n    const extractedText = match[1].trim();\n  const asciiText = extractedText.replace(/[^\\x00-\\x7F]/g, '');\n    console.log(asciiText); // Output: (empty since nothing is before <think>)\n  return {asciiText};\n}\n\nreturn { text };"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -420,
+        540
+      ],
+      "id": "04948c5b-a164-4a4d-943e-dd6f9b028202",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.content }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        -760,
+        320
+      ],
+      "id": "71a23661-6a34-46f7-9593-8e7ef1146095",
+      "name": "Basic LLM Chain1"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.chatInput }}",
+        "hasOutputParser": true
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        -760,
+        620
+      ],
+      "id": "ba6fd01e-1f22-4dfa-b4ff-b8ee11cc8e06",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "jsCode": "const text = $input.first().json.text;\nconst match = text.match(/<\\/think>\\s*(.*)/s);\nif (match) {\n    const extractedText = match[1].trim();\n  const asciiText1 = extractedText.replace(/[^\\x00-\\x7F]/g, '');\n    console.log(asciiText1); // Output: (empty since nothing is before <think>)\n  return {asciiText1};\n}\n\nreturn { text };"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -420,
+        360
+      ],
+      "id": "f1f93b1f-e125-4e9d-806f-7cbfc6da9fad",
+      "name": "Code1"
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "guildId": {
+          "__rl": true,
+          "value": "1333420525724368926",
+          "mode": "list",
+          "cachedResultName": "Webhooks",
+          "cachedResultUrl": "https://discord.com/channels/1333420525724368926"
+        },
+        "channelId": {
+          "__rl": true,
+          "value": "1334534389207531572",
+          "mode": "list",
+          "cachedResultName": "ai-chat-via-discord",
+          "cachedResultUrl": "https://discord.com/channels/1333420525724368926/1334534389207531572"
+        },
+        "options": {},
+        "embeds": {
+          "values": [
+            {
+              "description": "=qestion: {{ $('If3').item.json.content }}\n\nanswer:  {{ $('Code1').item.json.asciiText1 }}",
+              "author": "ai chat",
+              "color": "#FF0000",
+              "image": "https://c.tenor.com/v1jP3IrAUXIAAAAd/tenor.gif"
+            }
+          ]
+        }
+      },
+      "id": "260665ff-fbc1-472f-9d68-8975c1b57f9f",
+      "name": "Discord3",
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        180,
+        560
+      ],
+      "credentials": {
+        "discordBotApi": {
+          "id": "vhgZdJXvVK8Bp9Rs",
+          "name": "Discord Bot account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "guildId": {
+          "__rl": true,
+          "value": "1333420525724368926",
+          "mode": "list",
+          "cachedResultName": "Webhooks",
+          "cachedResultUrl": "https://discord.com/channels/1333420525724368926"
+        },
+        "channelId": {
+          "__rl": true,
+          "value": "1334485269201682513",
+          "mode": "list",
+          "cachedResultName": "ai-chat-via-n8n-chat",
+          "cachedResultUrl": "https://discord.com/channels/1333420525724368926/1334485269201682513"
+        },
+        "content": "=",
+        "options": {},
+        "embeds": {
+          "values": [
+            {
+              "description": "=qestion: {{ $('If3').item.json.chatInput }}\n\nanswer:  {{ $('Code').item.json.asciiText }}",
+              "author": "ai chat",
+              "color": "#FF0000",
+              "image": "https://c.tenor.com/v1jP3IrAUXIAAAAd/tenor.gif"
+            }
+          ]
+        }
+      },
+      "id": "66bfede5-48a7-4df1-994b-f4046bc370cb",
+      "name": "Discord4",
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        180,
+        780
+      ],
+      "credentials": {
+        "discordBotApi": {
+          "id": "vhgZdJXvVK8Bp9Rs",
+          "name": "Discord Bot account 2"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-bit-discord.bitDiscordTrigger",
+      "typeVersion": 1,
+      "position": [
+        -2320,
+        660
+      ],
+      "id": "3ad2a540-d98c-4b74-9fe0-eef180d459d6",
+      "name": "Bit Discord Trigger",
+      "credentials": {
+        "discordBotTriggerApi": {
+          "id": "x2bj3427bphBuEje",
+          "name": "Discord Bot Trigger account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Ollama Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Basic LLM Chain1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Discord1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Discord",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "If3": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If4": {
+      "main": [
+        [
+          {
+            "node": "Discord3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Discord4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "If4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain1": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "If4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Bit Discord Trigger": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "7b79d517-677f-469d-a3c6-7fafc1c27a70",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "0adf7eeec35c51e84cd4fdf7194f5d6855b856c3378ca2cef471c9f122a2cd0d"
+  },
+  "id": "h3xWI3rVkK9xY0Z1",
+  "tags": []
+}
